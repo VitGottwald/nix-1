@@ -246,12 +246,12 @@ requires Perl and the `HTML::TokeParser::Simple` and `LWP` packages:
 
 ```perl
 #! /usr/bin/env nix-shell
-#! nix-shell -i perl --packages perl perlPackages.HTMLTokeParserSimple perlPackages.LWP
+#! nix-shell -i perl -p perl perlPackages.HTMLTokeParserSimple perlPackages.LWP perlPackages.LWPProtocolHttps
 
 use HTML::TokeParser::Simple;
 
 # Fetch nixos.org and print all hrefs.
-my $p = HTML::TokeParser::Simple->new(url => 'http://nixos.org/');
+my $p = HTML::TokeParser::Simple->new(url => 'https://nixos.org/');
 
 while (my $token = $p->get_tag("a")) {
     my $href = $token->get_attr("href");
